@@ -10,7 +10,7 @@
 
   - name: Ansible copy files from a directory to remote server
     copy:
-      src: /root/funny-eyes/
+      src: /funny-eyes/
       dest: /var/www/html/
   - name: set the SELinux on all the Files
     command: restorecon -Rv /var/www/html
