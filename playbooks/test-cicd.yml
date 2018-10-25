@@ -1,0 +1,14 @@
+---
+- hosts: all
+  tasks:
+  - name: Login to OpenShift
+    command: oc login -u pmamontov -p P@ssw0rd https://openshift.aq.lab:8443
+  - name: Clone repo with configs
+    git:
+      repo: 'https://github.com/siamaksade/openshift-cd-demo.git'
+      dest: /root/demo/
+      version: ocp-3.10
+  - name: Change the working directory before executing the command and srarting the script.
+    command: /root/demo/scripts/provision.sh deploy --ephemeral --deploy-che
+    args:
+      chdir: /root/demo/scripts/
