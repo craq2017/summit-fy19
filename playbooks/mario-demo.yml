@@ -1,0 +1,11 @@
+---
+- hosts: all
+  tasks:
+  - name: Login to OpenShift
+    command: oc login -u pmamontov -p P@ssw0rd https://openshift.aq.lab:8443
+  - name: Create project
+    command: oc new-project mario-test
+  - name: Deploy app
+    command: oc new-app --name=mario-test openshift/httpd~https://github.com/craq2017/FullScreenMario.git
+  - name: Expose service
+    command: oc expose svc mario-test --hostname=mario.apps.openshift.aq.lab
